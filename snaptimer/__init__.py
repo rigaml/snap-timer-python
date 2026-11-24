@@ -1,0 +1,1 @@
+"""SnapTimer for Windows."""

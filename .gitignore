@@ -1,0 +1,7 @@
+/.build-env/
+/.venv/
+/dist/
+__pycache__/
+*.py[cod]
+snaptimer.ini
+/snaptimer/assets/music/
