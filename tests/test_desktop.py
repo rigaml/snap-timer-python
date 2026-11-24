@@ -73,6 +73,7 @@ class DesktopTests(unittest.TestCase):
         self.root.update()
         controls = self.app._controls
         full_size = (self.root.winfo_width(), self.root.winfo_height())
+        clock_size = self.app._clock_font.cget("size")
         self.assertTrue(controls.winfo_ismapped())
 
         self.pointer.return_value = True
@@ -81,6 +82,7 @@ class DesktopTests(unittest.TestCase):
         self.wait_for(lambda: not controls.winfo_ismapped())
         self.assertTrue(self.app.compact)
         self.assertLess(self.root.winfo_height(), full_size[1])
+        self.assertEqual(self.app._clock_font.cget("size"), clock_size)
         self.assertEqual(str(self.root.cget("menu")), "")
 
         self.pointer.return_value = None
@@ -91,6 +93,7 @@ class DesktopTests(unittest.TestCase):
         self.wait_for(lambda: controls.winfo_ismapped())
         self.assertFalse(self.app.compact)
         self.assertEqual((self.root.winfo_width(), self.root.winfo_height()), full_size)
+        self.assertEqual(self.app._clock_font.cget("size"), clock_size)
         self.assertEqual(str(self.root.cget("menu")), str(self.app._menu))
         display = self.app._display
         self.assertEqual(

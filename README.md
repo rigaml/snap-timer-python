@@ -25,7 +25,7 @@ The source has no third-party runtime dependencies. Both launchers accept a dura
 - Use **Edit → Options** to select message, Windows notification, WAV, and program/file alarms. Use **Test** beside each alarm to try it immediately. Windows controls where notification icons appear and can suppress notification pop-ups when Do Not Disturb is on.
 - To use **Play music during the countdown** in **Edit → Options → Alarms**, create `snaptimer/assets/music` and add your own numbered MP3 or WAV files, such as `1-track.mp3`. The repository contains no countdown music. SnapTimer reads the files in numeric order. Each countdown gets one looping track, and the playlist wraps after the last track. Pause holds the track at its current position, and Reset returns to the first track. An automatic restart with music waits for the WAV alarm before starting the next countdown. Without a message box to dismiss, that alarm plays once.
 - Right-click the notification icon to see the time and controls. Click it to restore a window minimized to the notification area or to pause or resume a visible timer.
-- Moving the pointer out of the timer window switches to compact mode. Move it back over the clock to restore the controls. Use **Ctrl+M** or right-click the time to switch modes manually.
+- Moving the pointer out of the timer window switches to compact mode and keeps the clock at the size you set by resizing the window. Move the pointer back over the clock to restore the controls. Use **Ctrl+M** or right-click the time to switch modes manually.
 - Resize the window to change the clock text size. Set the font family, style, and colors in **Edit → Options → Appearance**.
 
 Settings are saved automatically by default to **%LOCALAPPDATA%\SnapTimer\snaptimer.ini**. For a portable setup, launch once with **--portable** from a writable folder. Subsequent launches use the INI beside the executable when it exists. You can also copy in an existing SnapTimer INI or use **--ini PATH** to give an instance its own settings. Relative alarm paths are first resolved beside the INI, then beside the executable or source launcher, and then against the bundled assets.
@@ -64,3 +64,22 @@ The build writes **dist/SnapTimer.exe**. Temporary build files stay outside the 
 
 The original [SnapTimer](https://github.com/jaden/SnapTimer) was written by Dan Hersam and described as freeware in the original readme. The bundled sounds and icons come from the supplied source. The original project credits [Freesound](https://freesound.org/), A1 Free Sound Effects, and FatCow's icon collection.
 
+## Changelog
+
+### 2026-11-24
+
+- Fixed compact mode shrinking the clock text after resizing the window.
+- Published the Python port in a standalone GitHub repository with credit to Dan Hersam. The countdown music and locally built executable were kept out of the repository.
+
+### 2026-11-23
+
+- Added an optional elapsed-time clock beside the countdown in both window modes. It counts through pauses and automatic restarts, freezes on Stop/Reset, and starts at zero on the next fresh Start.
+- Added optional countdown music from numbered MP3 or WAV files. One track loops per interval, playback resumes from the paused position, and automatic restarts wait for the WAV alarm before moving to the next track.
+- Added preset and custom restart fractions to shorten each successive countdown, with a one-minute minimum. Reset restores the original duration.
+- Made the clock text scale with the window in both modes and kept the title bar draggable and the minimize button accessible at small sizes.
+- Moved the controls to the right and added automatic compact mode when the pointer leaves the window. Moving back over the clock restores the controls and previous window size.
+- Reduced the default and minimum window sizes, tightened clock padding.
+
+### 2026-11-20
+
+- Completed the initial Python port for Windows 10 and 11, preserving the countdown, stopwatch, tray controls, alarms, and compatibility with existing SnapTimer INI settings.

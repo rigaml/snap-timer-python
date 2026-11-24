@@ -677,10 +677,9 @@ class SnapTimer:
         size = self._full_size
         self.compact = compact
         if compact:
-            width, height = self._default_clock_area()
             compact_size = (
-                min(width, self.root.winfo_width()),
-                min(height, self._clock_area.winfo_height() + 2 * WINDOW_PADDING),
+                self.root.winfo_width(),
+                self._clock_area.winfo_height() + 2 * WINDOW_PADDING,
             )
             self._full_focus = self.root.focus_lastfor()
             self.root.configure(menu="")
